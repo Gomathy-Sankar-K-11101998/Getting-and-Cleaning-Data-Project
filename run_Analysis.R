@@ -1,13 +1,13 @@
-path <- "C:/Users/Home/Documents/RStudio Scripts/get clean data"
-setwd(path)
+#path <- "C:/Users/Home/Documents/RStudio Scripts/get clean data"
+#setwd(path)
 
 library(dplyr)
 
 # Assigning all the text files into its respective data frames
 
-activities = read.table("./UCI HAR Dataset/activity_labels.txt", col.names = c("code", "activity"))
+activities = read.table("./UCI HAR Dataset/activity_labels.txt", col.names = c("Activity code", "activity"))
 features = read.table("./UCI HAR Dataset/features.txt", col.names = c("n", "functions"))
-subject_test = read.table("./UCI HAR Dataset/test/subject_tests.txt", col.names = "subject")
+subject_test = read.table("./UCI HAR Dataset/test/subject_test.txt", col.names = "subject")
 X_test = read.table("./UCI HAR Dataset/test/X_test.txt", col.names = features$functions)
 y_test = read.table("./UCI HAR Dataset/test/y_test.txt", col.names = "Activity code")
 subject_train = read.table("./UCI HAR Dataset/train/subject_train.txt", col.names = "subject")
@@ -21,3 +21,4 @@ XData = merge(X_train, X_test)
 YData = merge(y_train, y_test)
 SubjectData = merge(subject_train, subject_test)
 Merged_Data = cbind(SubjectData, YData, XData)
+
