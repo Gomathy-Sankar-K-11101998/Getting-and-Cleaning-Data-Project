@@ -15,3 +15,9 @@ X_train = read.table("./UCI HAR Dataset/train/X_train.txt", col.names = features
 y_train = read.table("./UCI HAR Dataset/train/y_train.txt", col.names = "Activity code")
 
 
+# Performing the merging operations for the first task.
+
+XData = merge(X_train, X_test)
+YData = merge(y_train, y_test)
+SubjectData = merge(subject_train, subject_test)
+
