@@ -1,0 +1,118 @@
+---
+title: "CodeBook"
+author: "Sankar"
+date: "02/05/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## CodeBook Description of the steps performed
+
+The 'run_Analysis.R' file is coded in such a way that it gets the data of test and training data sets and converts it into a tidy dataset following the below steps.
+
+## Step 1: Assigning the text files to Different variables
+
+The text files *activity_labes.txt*, *features.txt*, *subject_train.txt*, *X_train.txt*, *y_train.txt*, *subject_test.txt*, *X_test.txt*, *y_test.txt* are read into the r file into a table format.
+
+#### * activities <- 'activity_labels.txt'
+
+List of different activities performed by the subjects and the codes representing those activities.
+Size = 6 rows and 2 columns
+
+#### * features <- 'features.txt'
+
+List of different measurments taken from the accelerometer and gyroscope 3-axial raw signals.
+Size = 561 rows and 2 columns
+
+#### * subject_train <- 'subject_train.txt'
+
+List of different subject members taken as training sets for the dataset.
+Size = 7352 rows and 1 column
+
+#### * subject_test <- 'subject_test.txt'
+
+List of different subject members taken as testing sets for the dataset.
+Size = 2947 rows and 1 column
+
+#### * X_train <- 'X_train.txt'
+
+Dataset containing the different observations for different measurements of the subjects in the training dataset.
+Size = 7352 rows and 561 columns
+
+#### * X_test <- 'X_test.txt'
+
+Dataset containing the different observations for different measurements of the subjects in the testing dataset.
+Size = 2947 rows and 561 columns
+
+#### * y_train <- 'y_train.txt'
+
+List containing the codes of different types of activities performed by the subjects in the training dataset.
+Size = 7352 rows and 1 column
+
+#### * y_test <- 'y_test.txt'
+
+List containing the codes of different types of activities performed by the subjects in the testing dataset.
+Size = 2947 rows and 1 column
+
+
+## Merging Operation
+
+This step is divided into four steps:
+
+#### Step 1: 
+
+Merging the X training and testing datasets into a single dataset.
+size = 10299 rows, 561 columns
+
+#### Step 2: 
+
+Merging the y training and testing datasets into a single dataset.
+size = 10299 rows, 1 column
+
+#### Step 3: 
+
+Merging the subject training and testing datasets into a single dataset.
+size = 10299 rows, 1 column
+
+The first 3 steps are performed using rbind (i.e., row bind operation).
+
+#### Step 4: 
+
+Merging all the datasets formed from the above 3 steps into a single 'Merged_Data' Dataset using cbind (i.e., column bind operation).
+size = 10299 rows, 563 columns
+
+## Creation of Tidy Dataset
+
+The tidy dataset is then created from the *Merged_Data* dataset by extracting only the subject, activity code and measurements on the mean and standard deviation for each measurement and stored in a separate dataset called the **Tidy_Data**.
+
+Size = 10299 rows, 88 columns
+
+## Renaming by decriptive activity names
+
+The codes representing the activites performed by the subject in the tidy data set is then entirely changed into the names of the activities to describe the activity literally than depicting those activities by a code.
+
+## Renaming the column Names of the Tidy Dataset
+
+The Column Names of the *Tidy_Data* Dataset are changed:
+
+* **'subject'** column renamed to *SubjectID*
+* **'Activity.code'** column renamed to *NameOfActivity*
+* All characters starting with **'t'** renamed to *Time*
+* All characters starting with **'f'** renamed to *Frequency*
+* All characters that contains **'Acc'** renamed to *Acceleration*
+* All characters that contains **'Mag'** renamed to *Magnitude*
+* All characters that contains **'Gyro'** renamed to *Gyroscope*
+* All characters that contains **'BodyBody'** renamed to *Body*
+* **'gravity'** column renamed to *Gravity*
+* **'angle'** column renamed to *Angle*
+
+## Creation of Final DataSet
+
+This dataset is created from the *Tidy_Data* dataset summarizing the tidy dataset by the averages of all the measurements or variables for each subject and for each activity.
+
+Size = 180 rows, 88 columns
+
+This dataset is then exported into a text file named **Final_Dataset.txt**.
