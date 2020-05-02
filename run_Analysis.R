@@ -31,7 +31,19 @@ Tidy_Data = Merged_Data %>% select(subject, Activity.code, contains("mean") | co
 # and acitivity code names
 
 Tidy_Data$Activity.code = activities[Tidy_Data$Activity.code, 2]
-Tidy_Data = rename(Tidy_Data, SubjectID = subject)
-Tidy_Data = rename(Tidy_Data, NameOfActivity = Activity.code)
+
+# Changing the names of Different masurements of the column names into more readable one
+
+names(Tidy_Data) = gsub("subject", "SubjectID", names(Tidy_Data))
+names(Tidy_Data) = gsub("Activity.code", "NameOfActivity", names(Tidy_Data))
+names(Tidy_Data) = gsub("^t", "Time", names(Tidy_Data))
+names(Tidy_Data) = gsub("^f", "Frequency", names(Tidy_Data))
+names(Tidy_Data) = gsub("Acc", "Acceleration", names(Tidy_Data))
+names(Tidy_Data) = gsub("Gyro", "Gyroscope", names(Tidy_Data))
+names(Tidy_Data) = gsub("BodyBody", "Body", names(Tidy_Data))
+names(Tidy_Data) = gsub("Mag", "Magnitude", names(Tidy_Data))
+names(Tidy_Data) = gsub("gravity", "Gravity", names(Tidy_Data))
+names(Tidy_Data) = gsub("angle", "Angle", names(Tidy_Data))
+
 
 
