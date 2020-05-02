@@ -17,8 +17,8 @@ y_train = read.table("./UCI HAR Dataset/train/y_train.txt", col.names = "Activit
 
 # Performing the merging operations for the first task.
 
-XData = merge(X_train, X_test)
-YData = merge(y_train, y_test)
-SubjectData = merge(subject_train, subject_test)
+XData = rbind(X_train, X_test)
+YData = rbind(y_train, y_test)
+SubjectData = rbind(subject_train, subject_test)
 Merged_Data = cbind(SubjectData, YData, XData)
 
