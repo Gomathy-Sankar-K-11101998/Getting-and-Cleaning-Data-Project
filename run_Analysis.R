@@ -46,4 +46,11 @@ names(Tidy_Data) = gsub("gravity", "Gravity", names(Tidy_Data))
 names(Tidy_Data) = gsub("angle", "Angle", names(Tidy_Data))
 
 
+# Creation of the Final Independent DataSet representing the average of all the masurements
+# and grouped based on the subjects and the activity
 
+Final_Dataset = Tidy_Data %>% group_by(SubjectID, NameOfActivity) %>% summarise_all(funs(mean))
+
+# Final step of writing the Final_Dataset into a text file
+
+write.table(Final_Dataset, "Final_Dataset.txt", row.names = FALSE)
