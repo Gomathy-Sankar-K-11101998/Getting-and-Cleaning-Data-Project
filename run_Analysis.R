@@ -22,3 +22,16 @@ YData = rbind(y_train, y_test)
 SubjectData = rbind(subject_train, subject_test)
 Merged_Data = cbind(SubjectData, YData, XData)
 
+# Exract only the columns that contains mean and standard deviation for each measurement 
+# and inserting them into the newly created tidy data set
+
+Tidy_Data = Merged_Data %>% select(subject, Activity.code, contains("mean") | contains("std"))
+
+# Changing the activity code into respective names of the activity and changing the subject 
+# and acitivity code names
+
+Tidy_Data$Activity.code = activities[Tidy_Data$Activity.code, 2]
+Tidy_Data = rename(Tidy_Data, SubjectID = subject)
+Tidy_Data = rename(Tidy_Data, NameOfActivity = Activity.code)
+
+
